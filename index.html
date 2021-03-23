@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>誕生日ゲッター</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body style="text-align: center;">
+    <h3 id="str1">誕生日ゲッター</h3>
+    <!-- <input type="text" class="datepicker" id="str2" style="width: 200px;"><br> -->
+    <input type="date" id="str2" style="width: 200px;"><br>
+    <form style="background-color: aliceblue; width: 300px; display: block; margin: 0 auto 0 auto;" id="radio">
+            <label>
+                <input class="with-gap" name="honyaku" value="english" type="radio"  checked/>
+                <span>english</span>
+            </label>
+            <label>
+                <input class="with-gap" name="honyaku" value="japanise" type="radio">
+                <span>japanise</span>
+            </label>
+            <label>
+                <input class="with-gap" name="honyaku" value="chinise" type="radio">
+                <span>chinise</span>
+            </label><br>
+            <label>
+                <input class="with-gap" name="honyaku" value="Korean" type="radio">
+                <span>korean</span>
+            </label>
+            <label>
+                <input class="with-gap" name="honyaku" value="Spanish" type="radio">
+                <span>spanish</span>
+            </label>
+            <label>
+                <input class="with-gap" name="honyaku" value="German" type="radio">
+                <span>german</span>
+            </label>
+    </form>
+    <label>
+        <input type="checkbox" class="filled-in" id="str5"/>
+        <span id="str6"></span>
+    </label>
+    <table id="str4" border="1" style="margin: 0 auto 0 auto;width: 500px;text-align: center;"></table>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.datepicker');
+            var instances = M.Datepicker.init(elems,{format:"yyyy/mm/dd"});
+        });
+        var date;
+        var year;
+        var honyaku = {
+            english:["San","Mon","Tue","Wed","Thu","Fri","Sat","Birthday Gift Hunter","Calculation","age","date","day of the week","No date entered","difficulty","eazy","very hard","strategically","Display historical data" ],
+            japanise:["日曜","月曜","火曜","水曜","木曜","金曜","土曜","誕生日プレゼントハンター","計算","年齢","日付","曜日","日付が入力されていません","難しさ","簡単","すごく難しい","戦略的に","過去のデータを表示"],
+            chinise:["周日","周一","周二","周三","周四","周五","周六","生日礼物猎人","计算","年龄","日期","星期几" ,"没有输入日期","困难","轻松","非常困难","策略性" ,"显示历史数据" ],
+            Korean:["일요", "월요", "화요", "수요", "목요", "금요", "토요", "생일 선물 헌터 ", "계산", "나이", "날짜", "요일" ,"날짜가 입력되어 있지 않습니다","어려움","쉽게", "너무 어렵다", "전략적" ,"과거의 데이터를 표시 " ],
+            Spanish:["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Cumpleaños", "Cálculo", "edad", "Fecha", "Cazador de regalos de cumpleaños" ,"Sin fecha ingresada", "dificultad", "Fácil", "Muy difícil", "Estratégico" ,"Mostrar datos históricos" ],
+            German:["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Geburtstagsfeier", "Berechnung", "Alter", "Datum", "Wochentag" ,"Geburtstagsgeschenk Jäger", "Schwierigkeit", "Einfach", "Sehr schwierig", "Strategisch","Historische Daten anzeigen" ]
+        }
+        function keisan(){
+            if (document.getElementById("str2").value != ""){
+                date = new Date(document.getElementById("str2").value)
+                year = date.getFullYear()
+                var a = "<tr><td style='width: 50px;'>" + honyaku[uti][9] + "</td><td style='width: 150px;'>" + honyaku[uti][10] + "</td><td style='width: 150px;'>" + honyaku[uti][11] + "</td><td style='width: 150px;'>" + honyaku[uti][13] + "</tr>"
+                for (var i = 0;i < 121;++i){
+                    if (!document.getElementById("str5").checked || (document.getElementById("str5").checked && year >= new Date().getFullYear())){
+                        a += "<tr style='color: "
+                        if (year < new Date().getFullYear()){
+                            a += "gray"
+                        }else{
+                            a += "black"
+                        }
+                        a += ";'><td>" + i + "</td><td>" + year + "/" + ("000" + (date.getMonth() + 1)).slice( -2 ) + "/" + ("000" + (date.getDate())).slice( -2 ) + "</td><td>" + honyaku[uti][new Date(year + "/" + (date.getMonth() + 1) + "/" + date.getDate()).getDay()] + "</td>"
+                        var uti2 = new Date(year + "/" + (date.getMonth() + 1) + "/" + date.getDate()).getDay()
+                        if (uti2 == 0 || uti2 == 6){
+                            a += "<td>" + honyaku[uti][14] + "</td>"
+                        }else if (uti2 == 1 || uti2 == 2 || uti2 == 3){
+                            a += "<td>" + honyaku[uti][15] + "</td>"
+                        }else{
+                            a += "<td>" + honyaku[uti][16] + "</td>"
+                        }
+                        a += "</tr>"
+                    }
+                    ++year
+                }
+                document.getElementById("str4").innerHTML = a
+            }else{
+                alert(honyaku[uti][12])
+            }
+        }
+        var uti = ""
+        var b = ""
+        var c = ""
+        function honyaku_syori(){
+            var element = document.getElementById( "radio" )
+            var radioNodeList = element.honyaku
+            var a = radioNodeList.value
+            if (uti == ""){
+                uti = radioNodeList.value
+                b = document.getElementById("str2").value
+                c = document.getElementById("str5").checked
+            }
+            document.getElementById("str6").innerText = honyaku[a][17]
+            if (a != uti){
+                uti = a
+                document.getElementById("str1").innerText = honyaku[a][7]
+                keisan()
+                document.title=honyaku[a][7];
+            }else if (document.getElementById("str2").value != b){
+                keisan()
+                b = document.getElementById("str2").value
+            }else if (document.getElementById("str5").checked != c){
+                keisan()
+                c = document.getElementById("str5").checked
+            }
+        }
+        setInterval(honyaku_syori,0)
+    </script>
+</body>
+</html>
