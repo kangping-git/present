@@ -4,39 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>誕生日ゲッター</title>
+    <title>誕生日プレゼントハンター</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body style="text-align: center;">
-    <h3 id="str1">誕生日ゲッター</h3>
+    <h5 id="str1">誕生日プレゼントハンター</h5>
     <!-- <input type="text" class="datepicker" id="str2" style="width: 200px;"><br> -->
     <input type="date" id="str2" style="width: 200px;"><br>
     <form style="background-color: aliceblue; width: 300px; display: block; margin: 0 auto 0 auto;" id="radio">
             <label>
                 <input class="with-gap" name="honyaku" value="english" type="radio"  checked/>
-                <span>english</span>
+                <span>English</span>
             </label>
             <label>
                 <input class="with-gap" name="honyaku" value="japanise" type="radio">
-                <span>japanise</span>
+                <span>Japanese</span>
             </label>
             <label>
                 <input class="with-gap" name="honyaku" value="chinise" type="radio">
-                <span>chinise</span>
+                <span>Chinese</span>
             </label><br>
             <label>
                 <input class="with-gap" name="honyaku" value="Korean" type="radio">
-                <span>korean</span>
+                <span>Korean</span>
             </label>
             <label>
                 <input class="with-gap" name="honyaku" value="Spanish" type="radio">
-                <span>spanish</span>
+                <span>Spanish</span>
             </label>
             <label>
                 <input class="with-gap" name="honyaku" value="German" type="radio">
-                <span>german</span>
+                <span>German</span>
             </label>
     </form>
     <label>
@@ -63,7 +63,7 @@
             if (document.getElementById("str2").value != ""){
                 date = new Date(document.getElementById("str2").value)
                 year = date.getFullYear()
-                var a = "<tr><td style='width: 50px;'>" + honyaku[uti][9] + "</td><td style='width: 150px;'>" + honyaku[uti][10] + "</td><td style='width: 150px;'>" + honyaku[uti][11] + "</td><td style='width: 150px;'>" + honyaku[uti][13] + "</tr>"
+                var a = "<tr><td style='width: 50px;'>" + honyaku[uti][9] + "</td><td style='width: 50px;'>" + honyaku[uti][10] + "</td><td style='width: 50px;'>" + honyaku[uti][11] + "</td><td style='width: 150px;'>" + honyaku[uti][13] + "</tr>"
                 for (var i = 0;i < 121;++i){
                     if (!document.getElementById("str5").checked || (document.getElementById("str5").checked && year >= new Date().getFullYear())){
                         a += "<tr style='color: "
@@ -90,6 +90,8 @@
                 alert(honyaku[uti][12])
             }
         }
+        document.getElementById("str1").innerText = honyaku["english"][7]
+        document.title=honyaku["english"][7];
         var uti = ""
         var b = ""
         var c = ""
